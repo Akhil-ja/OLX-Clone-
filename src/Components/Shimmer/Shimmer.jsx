@@ -1,4 +1,3 @@
-import React from "react";
 import "./shimmer.css";
 
 const Shimmer = () => {
@@ -25,7 +24,6 @@ const Shimmer = () => {
           <div className="shimmer-line"></div>
         </div>
       </div>
-
     </div>
   );
 };

@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
+import "./Banner.css";
+import Arrow from "../../assets/Arrow";
 
-import './Banner.css';
-import Arrow from '../../assets/Arrow'
-function Banner() {
-  console.log("it from banner")
+const Banner = () => {
+  console.log("it's from banner");
   return (
     <div className="bannerParentDiv">
       <div className="bannerChildDiv">
         <div className="menuBar">
           <div className="categoryMenu">
             <span>ALL CATEGORIES</span>
-            <Arrow></Arrow> 
+            <Arrow></Arrow>
           </div>
           <div className="otherQuickOptions">
             <span>Cars</span>
@@ -23,15 +23,11 @@ function Banner() {
           </div>
         </div>
         <div className="banner">
-          <img
-            src="../../../Images/banner copy.png"
-            alt=""
-          />
+          <img src="../../../Images/banner copy.png" alt="" />
         </div>
       </div>
-      
     </div>
   );
-}
+};
 
-export default React.memo(Banner)
+export default React.memo(Banner);

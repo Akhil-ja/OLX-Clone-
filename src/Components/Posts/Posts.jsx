@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Heart from "../../assets/Heart";
 import "./Post.css";
@@ -9,10 +9,10 @@ import { PostContext } from "../../Store/postContext";
 import { useNavigate } from "react-router-dom";
 
 function Posts() {
-  const { firebase, firestore } = useContext(FirebaseContext);
+  const { firestore } = useContext(FirebaseContext);
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { postDetails, setPostDetails } = useContext(PostContext);
+  const { setPostDetails } = useContext(PostContext);
   const nav = useNavigate();
 
   useEffect(() => {
@@ -37,11 +37,6 @@ function Posts() {
     };
     fetchData();
   }, [firestore]);
-
- 
-  const sortedProducts = product
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 4);
 
   return (
     <div className="postParentDiv">
@@ -72,14 +67,13 @@ function Posts() {
                   </div>
                   <div className="content">
                     <p className="rate">Price:&#x20B9; {productData?.Price}</p>
-                    <span className="kilometer">
+                    <span className="name">
                       Category:{productData?.category.toUpperCase()}
                     </span>
-                    <p className="name">
+                    <p className="kilometer">
                       Product: {productData?.product.toUpperCase()}
                     </p>
                     <span>{productData?.createdAt}</span>
-                    <p>description:{productData?.description}</p>
                   </div>
                 </div>
               );
@@ -87,37 +81,6 @@ function Posts() {
           </div>
         ) : (
           <p>No product Listed</p>
-        )}
-      </div>
-      <div className="recommendations">
-        <div className="heading">
-          <span>Fresh recommendations</span>
-        </div>
-        {sortedProducts.length > 0 ? (
-          <div className="cards">
-            {sortedProducts.map((data, index) => {
-              return (
-                <div className="card" key={index}>
-                  <div className="favorite">
-                    <Heart></Heart>
-                  </div>
-                  <div className="image">
-                    <img src={data?.url} alt="loading" />
-                  </div>
-                  <div className="content">
-                    <p className="rate">&#x20B9;{data?.Price}</p>
-                    <span className="kilometer">{data?.category.toUpperCase()}</span>
-                    <p className="name"> {data?.product.toUpperCase()}</p>
-                  </div>
-                  <div className="date">
-                    <span>{data?.createdAt}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <p>No recommendations available</p>
         )}
       </div>
     </div>

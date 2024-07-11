@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Logo from "../../olx-logo.png";
@@ -17,7 +17,7 @@ export default function Signup() {
     phone: "",
     password: "",
   });
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const { auth, firestore } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
@@ -31,28 +31,27 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData){
-     
-      const {Username,email,phone,password}=formData
-      if (Username.trim() === '') {
+    if (formData) {
+      const { Username, email, phone, password } = formData;
+      if (Username.trim() === "") {
         failed("User name is empty");
         return;
-    } 
-    if (email.trim() === '') {
+      }
+      if (email.trim() === "") {
         failed("Email is empty");
         return;
-    }
-    if (phone.trim() === '') {
+      }
+      if (phone.trim() === "") {
         failed("Phone number is empty");
         return;
-    }
-    
-    if (password.trim() === '') {
+      }
+
+      if (password.trim() === "") {
         failed("Password is empty");
         return;
-    }  
+      }
     }
-    setLoading(true)
+    setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -68,8 +67,8 @@ export default function Signup() {
           email: formData.email,
           phone: formData.phone,
           uid: user.uid,
-        });      
-       
+        });
+
         navigate("/login");
         console.log("success");
       } else {
@@ -78,14 +77,13 @@ export default function Signup() {
     } catch (error) {
       failed(error.message);
       console.log(error.message);
-    } finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
-
       <div className="signupParentDiv">
         <img className="Logo" width="200px" height="200px" src={Logo}></img>
         <form className="form" onSubmit={handleSubmit}>
@@ -134,12 +132,12 @@ export default function Signup() {
           />
           <br />
           <br />
-          {loading && <ClipLoader color={"red"} loading={loading} size={50}/>}
+          {loading && <ClipLoader color={"red"} loading={loading} size={50} />}
           <button type="submit">Signup</button>
         </form>
-        <a onClick={()=>navigate("/login")}> already signUp!Login</a>
+        <a onClick={() => navigate("/login")}> already signUp!Login</a>
       </div>
-        {<ToastContainer />}
+      {<ToastContainer />}
     </div>
   );
 }

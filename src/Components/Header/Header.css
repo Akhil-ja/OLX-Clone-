@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   padding: 0 8px;
-  border: 2px solid #002f34;
   border-radius: 4px;
   background-color: white;
 }
@@ -37,37 +36,43 @@
 .productSearch {
   width: 35em;
   height: 48px;
-  border: 2px solid #002f34;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-color: transparent;
+  outline-color: transparent;
 }
+
+
 
 .productSearch .input {
   width: 100%;
-  height: 100%;
-  display: flex;
+  height: 80%;
+  margin-bottom: 20px;
+  border-color: transparent;
+  outline-color: transparent;
+
 }
 
 .productSearch .input input {
   border-color: transparent;
   outline-color: transparent;
+  height: 35px;
   width: 100%;
   align-items: center;
 }
 
 .productSearch .searchAction {
   min-width: 48px;
-  height: 48px;
+  height: 40px;
   position: relative;
   display: flex;
   cursor: pointer;
   background-color: #002f34;
-  border-radius: 0 4px 4px 0;
+
 }
 
 .productSearch .searchAction svg {
@@ -76,6 +81,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   fill: white;
+  height: 200px;
 }
 
 .language {
@@ -85,8 +91,7 @@
 }
 
 .language span {
-  /* justify-content: space-between;
-  align-items: center; */
+  align-items: center;
   font-size: 15px;
   white-space: normal;
   text-overflow: ellipsis;
@@ -94,8 +99,6 @@
   margin-right: 5px;
 }
 
-.language svg {
-}
 
 .span {
   text-decoration: none;
@@ -108,12 +111,15 @@
 
 .loginPage hr {
   margin: 0;
-  background-color: black;
   height: 2px;
+  border-color: transparent;
+  outline-color: transparent;
 }
 
-.loginPage a{
+.loginPage a {
   text-decoration: none;
+  border-color: transparent;
+  outline-color: transparent;
 }
 
 .sellMenu {
@@ -137,6 +143,7 @@
 .sellMenu .right {
   fill: #3a77ff;
 }
+
 .sellMenu .sellMenuContent {
   display: flex;
   position: absolute;
@@ -146,28 +153,40 @@
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: #002f34;
 }
 
-/* .sellMenu .sellMenuContent svg {
-  align-items: center;
-} */
+
+
 .sellMenu .sellMenuContent span {
   margin-left: 5px;
 }
 
 @media only screen and (max-width: 700px) {
+
   .placeSearch,
   .productSearch,
   .sellMenu {
     display: none;
   }
 }
-.logOut{
+
+.logOut {
+  height: 40px;
+  width: 90px;
   background-color: rgb(234, 60, 60);
-  border-radius: 8px;
+  border-radius: 6px;
 }
-.logOut:hover{
+
+.login-btn {
+  height: 40px;
+  width: 90px;
+  background-color: rgb(104, 109, 116);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.logOut:hover {
   background-color: #0c0a02;
   color: aliceblue;
   cursor: pointer;

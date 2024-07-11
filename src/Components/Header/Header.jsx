@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import "./Header.css";
 import OlxLogo from "../../assets/OlxLogo";
 import Search from "../../assets/Search";
-import Arrow from "../../assets/Arrow";
 import SellButton from "../../assets/SellButton";
 import SellButtonPlus from "../../assets/SellButtonPlus";
 import { AuthContext } from "../../Store/context";
@@ -12,8 +11,8 @@ import { ToastContainer } from "react-toastify";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firbase/config";
 import { useNavigate, NavLink } from "react-router-dom";
-function Header() {
 
+function Header() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const Out = async () => {
@@ -34,11 +33,6 @@ function Header() {
         <div className="brandName">
           <OlxLogo></OlxLogo>
         </div>
-        <div className="placeSearch">
-          <Search></Search>
-          <input type="text" />
-          <Arrow></Arrow>
-        </div>
         <div className="productSearch">
           <div className="input">
             <input
@@ -55,7 +49,7 @@ function Header() {
         ) : (
           <div className="loginPage">
             <NavLink to={"/login"}>
-              <span>Login</span>
+              <button className="login-btn"> Login</button>
             </NavLink>
             <hr />
           </div>
@@ -83,4 +77,6 @@ function Header() {
   );
 }
 
-export default React.memo(Header);
+const MemoizedHeader = React.memo(Header);
+
+export default MemoizedHeader;

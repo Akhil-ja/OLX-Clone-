@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { FirebaseContext } from "../../Store/context";
 import Logo from "../../olx-logo.png";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -15,7 +15,7 @@ function Login() {
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { firebase, auth } = useContext(FirebaseContext);
+  const { auth } = useContext(FirebaseContext);
   const handelChange = async (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,12 +25,12 @@ function Login() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.email.trim()==""){
-      failed("email is requried")
-      return
-    }else if(formData.password.trim()==""){
-      failed("password is required")
-      return
+    if (formData.email.trim() == "") {
+      failed("email is requried");
+      return;
+    } else if (formData.password.trim() == "") {
+      failed("password is required");
+      return;
     }
     setLoading(true);
     try {
@@ -40,14 +40,13 @@ function Login() {
         formData.password
       );
       if (authentication) {
-        const user = authentication.user;
         success("Login successFully");
         navigate("/");
       }
     } catch (error) {
       failed(error.message);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -57,7 +56,12 @@ function Login() {
       ) : (
         <div className="loginParentDiv">
           <img
-            style={{ width: "150px", height: "200px", paddingRight: "100px",paddingLeft:"100px" }}
+            style={{
+              width: "150px",
+              height: "200px",
+              paddingRight: "100px",
+              paddingLeft: "100px",
+            }}
             src={Logo}
           ></img>
           <form onSubmit={handleSubmit}>
@@ -86,13 +90,10 @@ function Login() {
             <br />
             <button className="login">Login</button>
           </form>
-        
-           <a className="signup" onClick={()=>navigate("/Singup")}>
-           new user? Signup
-            </a>
-        
-          
-          
+
+          <a className="signup" onClick={() => navigate("/Singup")}>
+            new user? Signup
+          </a>
         </div>
       )}
 
